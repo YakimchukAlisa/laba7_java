@@ -6,10 +6,7 @@ import org.jsfml.window.Keyboard;
 import org.jsfml.window.VideoMode;
 import org.jsfml.graphics.RenderWindow;
 
-import java.util.Collections;
-import java.util.Random;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.io.InputStream;
 
 public class Main {
@@ -128,13 +125,31 @@ public class Main {
         watermelonShape.setTexture(watermelonTexture);
         watermelonShape.setScale(0.03f, 0.03f);
 
-        //массив фруктов
-        Fruit[] fruitArray = new Fruit[5];
-        fruitArray[0] = new Fruit(20, cherryShape);
-        fruitArray[1] = new Fruit(30, appleShape);
-        fruitArray[2] = new Fruit(40, pearShape);
-        fruitArray[3] =  new Fruit(50, orangeShape);
-        fruitArray[4] = new Fruit(60,  watermelonShape);
+        List<Fruit> fruitArray = new ArrayList<>();
+        fruitArray.add(new Fruit(30, appleShape, "Apple"));
+        fruitArray.add(new Fruit(50, orangeShape, "Orange"));
+        fruitArray.add(new Fruit(60, watermelonShape, "Watermelon"));
+        fruitArray.add(new Fruit(20, cherryShape, "Cherry"));
+        fruitArray.add(new Fruit(40, pearShape, "Pear"));
+
+
+        // Сортируем фрукты по очкам в порядке возрастания
+        Collections.sort(fruitArray, Comparator.comparingInt(Fruit::getPoints));
+
+        System.out.println("Фрукты, отсортированные по очкам (возрастание):");
+        for (Fruit fruit : fruitArray) {
+            System.out.println(fruit.getName() + ": " + fruit.getPoints() + " очков");
+        }
+        System.out.println();
+
+        // Сортируем фрукты по очкам в порядке убывания
+        Collections.sort(fruitArray, Comparator.comparingInt(Fruit::getPoints).reversed());
+
+        System.out.println("Фрукты, отсортированные по очкам (убывание):");
+        for (Fruit fruit : fruitArray) {
+            System.out.println(fruit.getName() + ": " + fruit.getPoints() + " очков");
+        }
+
         int randFruit = 0;
 
         Font font = new Font();
@@ -217,18 +232,18 @@ public class Main {
                     window.close();
                 }
                 if (event.type == Event.Type.KEY_PRESSED && event.asKeyEvent().key == Keyboard.Key.RETURN) {
-                    game.resetGame(map, smallFood, bigFood, pacman, ghostArray, settings, resultText, fruitArray[0]);
+                    game.resetGame(map, smallFood, bigFood, pacman, ghostArray, settings, resultText, fruitArray.get(0));
                 }
             }
 
-            if (!fruitArray[0].getIsActive())
+            if (!fruitArray.get(0).getIsActive())
             {
                 randFruit = random.nextInt(4);
             }
 
             window.clear(Color.BLACK);
-            fruitArray[randFruit].createFruit(settings, map, window, smallFood);
-            map.mazePaint(settings, window, smallFood, bigFood,  fruitArray[randFruit].getSprite());
+            fruitArray.get(randFruit).createFruit(settings, map, window, smallFood);
+            map.mazePaint(settings, window, smallFood, bigFood,  fruitArray.get(randFruit).getSprite());
 
             ResultWrapper wonOrLostResult = pacman.wonOrLost(smallFood, bigFood, resultText);
             if (wonOrLostResult.getResult() == 1) {
@@ -244,7 +259,7 @@ public class Main {
                 pacman.updateMaxPoints(pacman.getPoints());
 
             } else {
-                pacman.move(map, smallFood, bigFood, fruitArray[randFruit], inputmanager);
+                pacman.move(map, smallFood, bigFood, fruitArray.get(randFruit), inputmanager);
                 blinky.blinkyMove(pacman, map, settings, window);
                 pinky.move(pacman, map, settings, window, smallFood);
                 inky.inkyMove(pacman, map, blinky, settings, window);

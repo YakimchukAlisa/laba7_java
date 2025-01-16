@@ -8,13 +8,16 @@ public class Fruit {
     private int y;       //координата Y на карте
     private int points;  //количество очков за съедение
     private Sprite sprite; //графическое представление
+    private String name;
     static boolean isActive;  //активен ли фрукт
 
     public Fruit() {};
-    public  Fruit(int points, Sprite sprite) {
+    public  Fruit(int points, Sprite sprite, String name) {
         this.points = points;
         this.sprite = sprite;
+        this.name = name;
     }
+    public String getName() {return name;}
     public int getX()  { return x; }
     public int getY() { return y; }
     public int getPoints() { return points; }
