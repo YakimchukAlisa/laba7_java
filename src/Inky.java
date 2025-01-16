@@ -8,8 +8,8 @@ public class Inky extends Ghost {
     }
 
 
-    public Inky(int x, int y, int score, int direction, int lastDirection, Color color) {
-        super(x, y, score, direction, lastDirection, color);
+    public Inky(int x, int y, String name, Color color) {
+        super(x, y, name, color);
     }
 
     public void inkyMove(Pacman pacman, Map map, Ghost blinky, GameSettings settings, RenderWindow window) {

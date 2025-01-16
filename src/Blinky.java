@@ -7,8 +7,8 @@ public class Blinky extends Ghost {
     public Blinky() {
     }
 
-    public Blinky(int x, int y, int score, int direction, int lastDirection, Color color) {
-        super(x, y, score, direction, lastDirection, color);
+    public Blinky(int x, int y, String name, Color color) {
+        super(x, y, name, color);
     }
 
     // Перегрузка метода без вызова метода базового класса

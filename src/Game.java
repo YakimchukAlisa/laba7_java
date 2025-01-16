@@ -31,10 +31,10 @@ class Game {
         Pinky pinky = (Pinky) ghostArray.get(1);
         Inky inky = (Inky) ghostArray.get(2);
         Clyde clyde = (Clyde) ghostArray.get(3);
-        blinky.setAll(11, 14, 0, 3, 3, settings.getBlinkyColor());
-        pinky.setAll(13, 14, 0, 3, 3, settings.getPinkyColor());
-        inky.setAll(15, 14, 0, 3, 3, settings.getInkyColor());
-        clyde.setAll(17, 14, 0, 3, 3, settings.getClydeColor());
+        blinky.setAll(11, 14, 0, 3, 3);
+        pinky.setAll(13, 14, 0, 3, 3);
+        inky.setAll(15, 14, 0, 3, 3);
+        clyde.setAll(17, 14, 0, 3, 3);
 
         Tile newTile = new Tile(' ');
         map.setTile(pacman.getY(), pacman.getX(), newTile);

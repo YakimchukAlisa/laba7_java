@@ -6,8 +6,8 @@ public class Clyde extends Ghost {
     public Clyde() {
     }
 
-    public Clyde(int x, int y, int score, int direction, int lastDirection, Color color) {
-        super(x, y, score, direction, lastDirection, color);
+    public Clyde(int x, int y, String name, Color color) {
+        super(x, y, name, color);
     }
 
     public void clydeMove(Pacman pacman, Map map, GameSettings settings, RenderWindow window) {

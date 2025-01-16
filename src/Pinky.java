@@ -7,8 +7,8 @@ public class Pinky extends Ghost {
     public Pinky() {
     }
 
-    public Pinky(int x, int y, int score, int direction, int lastDirection, Color color) {
-        super(x, y, score, direction, lastDirection, color);
+    public Pinky(int x, int y, String name, Color color) {
+        super(x, y, name, color);
     }
 
     void move(Pacman pacman, Map map, GameSettings settings, RenderWindow window, Food food) {

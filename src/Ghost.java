@@ -10,23 +10,26 @@ public class Ghost {
     protected int score;
     protected int direction;
     protected int lastDirection;
-    private Color color;
+    protected Color color;
+    protected String name;
 
     public Ghost() {
     }
 
+    public String getName() {return name;}
 
     public Color getColor() {
         return color;
     }
 
-    public Ghost(int x, int y, int score, int direction, int lastDirection, Color color) {
+    public Ghost(int x, int y, String name, Color color) {
         this.x = x;
         this.y = y;
-        this.score = score;
-        this.direction = direction;
-        this.lastDirection = lastDirection;
+        this.score = 0;
+        this.direction = 3;
+        this.lastDirection = 3;
         this.color = color; // Инициализируем цвет
+        this.name = name;
     }
 
     public int getX() {
@@ -49,18 +52,22 @@ public class Ghost {
         return lastDirection;
     }
 
-    public void setAll(int a, int b, int c, int d, int e, Color f) {
+    public void setAll(int a, int b, int c, int d, int e) {
         x = a;
         y = b;
         score = c;
         direction = d;
         lastDirection = e;
-        color = f;
     }
 
     public float distance(int x1, int y1, int x2, int y2) {
         return (float) Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     }
+
+    public float distanceTo(int pacmanX, int pacmanY) {
+        return (float) Math.sqrt(Math.pow(x - pacmanX, 2) + Math.pow(y - pacmanY, 2));
+    }
+
 
     public void ghostDraw(RenderWindow window, GameSettings settings) {
         RectangleShape ghostShape = new RectangleShape(new Vector2f(settings.getGridSize(), settings.getGridSize()));
