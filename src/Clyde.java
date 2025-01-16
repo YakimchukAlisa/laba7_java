@@ -25,7 +25,7 @@ public class Clyde extends Ghost {
     }
 
 
-    public int lose(Pacman pacman, Blinky blinky, Pinky pinky, Inky inky) {
+    public int lose(Pacman pacman, Ghost blinky, Pinky pinky, Inky inky) {
         int result = 0;
         if (pacman.getX() == blinky.getX() && pacman.getY() == blinky.getY()) {
             pacman.loseLife();

@@ -34,7 +34,7 @@ public class Main {
         Pacman pacman = new Pacman(settings.getPacmanStartX(), settings.getPacmanStartY(), settings.getPacmanStartX(), settings.getPacmanStartY(), 0, 3, 3, 0);
 
         List<Ghost> ghostArray = new ArrayList<>();
-        Blinky blinky = new Blinky(11, 14, "Blinky", settings.getBlinkyColor());
+        Ghost blinky = new Ghost(11, 14, "Blinky", settings.getBlinkyColor());
         Pinky pinky = new Pinky(13, 14, "Pinky", settings.getPinkyColor());
         Inky inky = new Inky(15, 14, "Inky", settings.getInkyColor());
         Clyde clyde = new Clyde(17, 14, "Clyde", settings.getClydeColor());
@@ -260,7 +260,8 @@ public class Main {
 
             } else {
                 pacman.move(map, smallFood, bigFood, fruitArray.get(randFruit), inputmanager);
-                blinky.blinkyMove(pacman, map, settings, window);
+                blinky.move(map, pacman.getX(), pacman.getY());
+                blinky.ghostDraw(window, settings);
                 pinky.move(pacman, map, settings, window, smallFood);
                 inky.inkyMove(pacman, map, blinky, settings, window);
                 clyde.clydeMove(pacman, map, settings, window);
@@ -283,8 +284,9 @@ public class Main {
                                     b.distanceTo(pacman.getX(), pacman.getY())));
 
 
-                    System.out.println("Ближайший призрак это " + closestGhost.getName() + " at (" + closestGhost.getX()
+                    System.out.println("Ближайший призрак это " + closestGhost.getName() + " на (" + closestGhost.getX()
                             + ", " + closestGhost.getY() + "), Distance: " + closestGhost.distanceTo(pacman.getX(), pacman.getY()));
+
                     if(pacman.getLives() > 0) {
                         blinky.setAll(11, 14, 0, 3, 3);
                         pinky.setAll(13, 14, 0, 3, 3);

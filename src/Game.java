@@ -27,14 +27,22 @@ class Game {
         pacman.setScore(0);
 
         // сброс призраков
-        Blinky blinky = (Blinky) ghostArray.get(0);
-        Pinky pinky = (Pinky) ghostArray.get(1);
-        Inky inky = (Inky) ghostArray.get(2);
-        Clyde clyde = (Clyde) ghostArray.get(3);
-        blinky.setAll(11, 14, 0, 3, 3);
-        pinky.setAll(13, 14, 0, 3, 3);
-        inky.setAll(15, 14, 0, 3, 3);
-        clyde.setAll(17, 14, 0, 3, 3);
+        for (int i = 0; i < ghostArray.size(); i++) {
+            Ghost ghost = ghostArray.get(i);
+
+            //  Предполагая, что в классе Ghost есть метод setAll
+            //  И все подклассы его переопределяют правильно
+            if (ghost instanceof Pinky) {
+                ghost.setAll(13, 14, 0, 3, 3);
+            } else if (ghost instanceof Inky) {
+                ghost.setAll(15, 14, 0, 3, 3);
+            } else if (ghost instanceof Clyde) {
+                ghost.setAll(17, 14, 0, 3, 3);
+            } else if(ghost instanceof Ghost) {
+                    ghost.setAll(11, 14, 0, 3, 3);
+                }
+            }
+
 
         Tile newTile = new Tile(' ');
         map.setTile(pacman.getY(), pacman.getX(), newTile);
