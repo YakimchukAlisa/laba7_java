@@ -132,7 +132,6 @@ public class Main {
         fruitArray.add(new Fruit(20, cherryShape, "Cherry"));
         fruitArray.add(new Fruit(40, pearShape, "Pear"));
 
-
         // Сортируем фрукты по очкам в порядке возрастания
         Collections.sort(fruitArray, Comparator.comparingInt(Fruit::getPoints));
 

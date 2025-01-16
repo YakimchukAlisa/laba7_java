@@ -30,8 +30,6 @@ class Game {
         for (int i = 0; i < ghostArray.size(); i++) {
             Ghost ghost = ghostArray.get(i);
 
-            //  Предполагая, что в классе Ghost есть метод setAll
-            //  И все подклассы его переопределяют правильно
             if (ghost instanceof Pinky) {
                 ghost.setAll(13, 14, 0, 3, 3);
             } else if (ghost instanceof Inky) {
